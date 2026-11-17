@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Eligibility Checker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #36d1dc, #5b86e5);
+            text-align: center;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            width: 350px;
+            max-width: 100%;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px #555;
+        }
+
+        h2 {
+            color: #24527a;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #24527a;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #36a1b5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Student Eligibility Checker</h2>
+
+        <p>Enter Student Details</p>
+
+        <input type="number" id="age"
+            placeholder="Enter Student Age" min="1">
+
+        <input type="number" id="attendance"
+            placeholder="Enter Attendance Percentage"
+            min="0" max="100">
+
+        <input type="number" id="marks"
+            placeholder="Enter Marks" min="0" max="100">
+
+        <br><br>
+
+        <button onclick="checkEligibility()">
+            Check Eligibility
+        </button>
+
+    </div>
+
+    <script>
+
+        function checkEligibility() {
+
+            // Get student details
+            let age = document.getElementById("age").value;
+            let attendance = document.getElementById("attendance").value;
+            let marks = document.getElementById("marks").value;
+
+            // Check empty fields
+            if (age === "" || attendance === "" || marks === "") {
+                alert("Please fill all the details!");
+                return;
+            }
+
+            // Convert values into numbers
+            age = Number(age);
+            attendance = Number(attendance);
+            marks = Number(marks);
+
+            // Validate input
+            if (age <= 0 || attendance < 0 ||
+                attendance > 100 || marks < 0 || marks > 100) {
+
+                alert("Please enter valid details!");
+                return;
+            }
+
+            // Check eligibility
+            if (age >= 17 && attendance >= 75 && marks >= 40) {
+
+                alert("Congratulations! Student is Eligible for Examination/Admission.");
+
+            }
+            else {
+
+                alert("Sorry! Student is Not Eligible for Examination/Admission.");
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

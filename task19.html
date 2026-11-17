@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 30px;
+        }
+
+        .container {
+            background: white;
+            max-width: 450px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #444;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        .gender {
+            width: auto;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Student Registration</h2>
+
+    <form id="registrationForm">
+
+        <input type="text" id="name" placeholder="Enter Full Name">
+
+        <input type="email" id="email" placeholder="Enter Email">
+
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <input type="number" id="age" placeholder="Enter Age">
+
+        <p>Select Gender:</p>
+
+        <input type="radio" name="gender" value="Male" class="gender"> Male
+
+        <input type="radio" name="gender" value="Female" class="gender"> Female
+
+        <br><br>
+
+        <button type="submit">Register Now</button>
+
+    </form>
+
+    <div id="message"></div>
+
+</div>
+
+<script>
+
+    // Registration Validation Function
+    function validateForm(event) {
+
+        event.preventDefault();
+
+        let name = document.getElementById("name").value.trim();
+
+        let email = document.getElementById("email").value.trim();
+
+        let password = document.getElementById("password").value;
+
+        let age = Number(document.getElementById("age").value);
+
+        let gender = document.querySelector(
+            'input[name="gender"]:checked'
+        );
+
+        let message = document.getElementById("message");
+
+        if (name === "") {
+            message.style.color = "red";
+            message.innerHTML = "Please enter your name.";
+        }
+
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            message.style.color = "red";
+            message.innerHTML = "Please enter a valid email.";
+        }
+
+        else if (password.length < 6) {
+            message.style.color = "red";
+            message.innerHTML = "Password must be at least 6 characters.";
+        }
+
+        else if (!age || age < 16 || age > 100) {
+            message.style.color = "red";
+            message.innerHTML = "Please enter a valid age.";
+        }
+
+        else if (!gender) {
+            message.style.color = "red";
+            message.innerHTML = "Please select your gender.";
+        }
+
+        else {
+            message.style.color = "green";
+            message.innerHTML = "Registration Successful!";
+            document.getElementById("registrationForm").reset();
+        }
+
+    }
+
+    // Form Submit Event
+    document.getElementById("registrationForm")
+        .addEventListener("submit", validateForm);
+
+</script>
+
+</body>
+</html>

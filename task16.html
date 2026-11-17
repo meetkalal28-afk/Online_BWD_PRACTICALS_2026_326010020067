@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Marks Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            text-align: center;
+            padding: 30px;
+        }
+
+        .container {
+            background: white;
+            width: 350px;
+            max-width: 100%;
+            margin: auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px #333;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Student Marks Calculator</h2>
+
+        <input type="number" id="sub1" placeholder="Enter English Marks" min="0" max="100">
+
+        <input type="number" id="sub2" placeholder="Enter Maths Marks" min="0" max="100">
+
+        <input type="number" id="sub3" placeholder="Enter Science Marks" min="0" max="100">
+
+        <input type="number" id="sub4" placeholder="Enter Computer Marks" min="0" max="100">
+
+        <input type="number" id="sub5" placeholder="Enter Hindi Marks" min="0" max="100">
+
+        <br>
+
+        <button onclick="calculateResult()">Calculate Result</button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+
+        function calculateResult() {
+
+            // Get marks from input fields
+            let m1 = Number(document.getElementById("sub1").value);
+            let m2 = Number(document.getElementById("sub2").value);
+            let m3 = Number(document.getElementById("sub3").value);
+            let m4 = Number(document.getElementById("sub4").value);
+            let m5 = Number(document.getElementById("sub5").value);
+
+            // Check valid marks
+            let marks = [m1, m2, m3, m4, m5];
+
+            if (marks.some(mark => mark < 0 || mark > 100) ||
+                marks.some(mark => document.getElementById("sub1").value === "" && mark === m1)) {
+                document.getElementById("result").innerHTML =
+                    "Please enter valid marks between 0 and 100.";
+                return;
+            }
+
+            // Calculate total
+            let total = m1 + m2 + m3 + m4 + m5;
+
+            // Calculate percentage
+            let percentage = total / 5;
+
+            // Calculate grade
+            let grade;
+
+            if (marks.some(mark => mark < 0 || mark > 100)) {
+                grade = "Invalid Marks";
+            }
+            else if (marks.some(mark => mark < 35)) {
+                grade = "Fail";
+            }
+            else if (percentage >= 90) {
+                grade = "A+";
+            }
+            else if (percentage >= 80) {
+                grade = "A";
+            }
+            else if (percentage >= 70) {
+                grade = "B";
+            }
+            else if (percentage >= 60) {
+                grade = "C";
+            }
+            else if (percentage >= 50) {
+                grade = "D";
+            }
+            else {
+                grade = "Pass";
+            }
+
+            // Display result
+            document.getElementById("result").innerHTML =
+                "<h3>Student Result</h3>" +
+                "Total Marks: " + total + " / 500<br>" +
+                "Percentage: " + percentage.toFixed(2) + "%<br>" +
+                "Grade: " + grade;
+
+        }
+
+    </script>
+
+</body>
+</html>

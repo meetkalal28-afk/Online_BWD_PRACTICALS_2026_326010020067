@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subject Information</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            text-align: center;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            max-width: 450px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #888;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        select {
+            width: 90%;
+            padding: 12px;
+            margin: 15px;
+            border-radius: 5px;
+        }
+
+        #result {
+            background: #e8f4ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Subject Information</h2>
+
+    <p>Select a Subject:</p>
+
+    <select id="subject" onchange="showSubject()">
+        <option value="">-- Select Subject --</option>
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="Bootstrap">Bootstrap</option>
+    </select>
+
+    <div id="result">
+        Subject information will appear here.
+    </div>
+
+</div>
+
+<script>
+
+    // Subject Array
+    let subjects = [
+        {
+            name: "HTML",
+            description: "HTML is used to create the structure of webpages.",
+            duration: "1 Month"
+        },
+        {
+            name: "CSS",
+            description: "CSS is used to design and style webpages.",
+            duration: "1 Month"
+        },
+        {
+            name: "JavaScript",
+            description: "JavaScript makes webpages interactive.",
+            duration: "2 Months"
+        },
+        {
+            name: "Bootstrap",
+            description: "Bootstrap is used to create responsive websites.",
+            duration: "1 Month"
+        }
+    ];
+
+    // Function to Display Subject
+    function showSubject() {
+
+        let selected = document.getElementById("subject").value;
+
+        let result = document.getElementById("result");
+
+        let subject = subjects.find(s => s.name === selected);
+
+        if (subject) {
+
+            result.innerHTML =
+                "<h3>" + subject.name + "</h3>" +
+                "<p>" + subject.description + "</p>" +
+                "<p>Duration: " + subject.duration + "</p>";
+
+        } else {
+
+            result.innerHTML = "Please select a subject.";
+
+        }
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Information</title>
+</head>
+<body>
+
+    <h1>Marwadi University</h1>
+
+    <h2>About Our College</h2>
+
+    <p>
+        Marwadi University is located in Rajkot, Gujarat.
+        It provides education in various fields such as
+        Computer Applications, Engineering and Management.
+    </p>
+
+    <h2>College Location</h2>
+
+    <p>Click the button to find your current location:</p>
+
+    <button onclick="getLocation()">
+        Show My Location
+    </button>
+
+    <p id="demo"></p>
+
+    <script>
+        function getLocation() {
+
+            if (navigator.geolocation) {
+
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+
+                        document.getElementById("demo").innerHTML =
+                        "Latitude: " + position.coords.latitude +
+                        "<br>Longitude: " + position.coords.longitude;
+
+                    },
+                    function() {
+                        document.getElementById("demo").innerHTML =
+                        "Location permission denied or unavailable.";
+                    }
+                );
+
+            } else {
+                document.getElementById("demo").innerHTML =
+                "Geolocation is not supported by this browser.";
+            }
+        }
+    </script>
+
+    <hr>
+
+    <h2>College Map</h2>
+
+    <iframe
+        src="https://www.google.com/maps?q=Marwadi%20University%20Rajkot&output=embed"
+        width="500"
+        height="300"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy">
+    </iframe>
+
+    <hr>
+
+    <h2>Purpose of Iframe</h2>
+
+    <p>
+        An iframe is used to display another webpage
+        or external content inside the current webpage.
+        It helps us to show Google Maps, videos and
+        other websites without leaving our page.
+    </p>
+
+    <h2>Contact Information</h2>
+
+    <p><b>College:</b> Marwadi University</p>
+    <p><b>City:</b> Rajkot, Gujarat</p>
+
+</body>
+</html>
